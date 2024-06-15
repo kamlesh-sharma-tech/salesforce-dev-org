@@ -38,27 +38,27 @@ export default class AccountRelatedContactsLWC extends NavigationMixin(Lightning
             });
     }
 
-    handleNavigateToRecordPage(event) {
-        //event.preventDefault();
-        const recordIdToNavigate = event.currentTarget.dataset.id;
-        this[NavigationMixin.GenerateUrl]({
-            type: 'standard__recordPage',
-            attributes: {
-                recordId: recordIdToNavigate,
-                objectApiName: 'Contact',
-                actionName: 'view',
-            },
-        }).then(generatedUrl => {
-            //window.open(generatedUrl);
-            openTab({
-                url: generatedUrl,
-                label: 'Contacts',
-                focus: true
-           }).catch((error) => {
-                console.log(error);
-           });
-        });
-    }
+    // handleNavigateToRecordPage(event) {
+    //     //event.preventDefault();
+    //     const recordIdToNavigate = event.currentTarget.dataset.id;
+    //     this[NavigationMixin.GenerateUrl]({
+    //         type: 'standard__recordPage',
+    //         attributes: {
+    //             recordId: recordIdToNavigate,
+    //             objectApiName: 'Contact',
+    //             actionName: 'view',
+    //         },
+    //     }).then(generatedUrl => {
+    //         //window.open(generatedUrl);
+    //         openTab({
+    //             url: generatedUrl,
+    //             label: 'Contacts',
+    //             focus: true
+    //        }).catch((error) => {
+    //             console.log(error);
+    //        });
+    //     });
+    // }
 
     handleViewLess(){
         this.isExpanded = false;
