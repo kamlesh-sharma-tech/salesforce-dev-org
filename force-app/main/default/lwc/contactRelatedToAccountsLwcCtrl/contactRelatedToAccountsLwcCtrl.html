@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Related Contacts" icon-name='standard:contact' alternative-text='contract' style="background: #f3f3f3;">
+
+        <template for:each={contacts} for:item="con">
+            <div key={con.Id}>
+                <dl class="slds-dl_horizontal">
+                <dt class="slds-dl_horizontal__label">Last Name:</dt>
+                <dd class="slds-dl_horizontal__detail">{con.LastName}</dd>
+                <dt class="slds-dl_horizontal__label">Email:</dt>
+                <dd class="slds-dl_horizontal__detail">{con.Email}</dd>
+                <dt class="slds-dl_horizontal__label">Primary Business Time Zone:</dt>
+                <dd class="slds-dl_horizontal__detail">{con.LeadSource}</dd>
+                </dl>
+            </div>
+    </template>
+
+    </lightning-card>
+</template>

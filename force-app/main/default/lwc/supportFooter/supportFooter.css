@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+.footer {
+    background-color: #000;
+    color: #fff;
+    font-size: .875rem;
+    line-height: 1.8;
+    padding: 2rem 1rem;
+}
+ul{
+    list-style-type: none;
+}
+a{
+    color: #ffffff;
+}
+.column{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

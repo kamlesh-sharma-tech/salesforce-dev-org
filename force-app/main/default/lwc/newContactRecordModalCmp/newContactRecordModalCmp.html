@@ -1,0 +1,126 @@
+<template>
+    <lightning-card title="Create a new contact using modal">
+    
+        <lightning-button variant="brand" label="Create Contact" class="slds-m-left_x-small" title="Create Contact" onclick={openContactModal}>
+        </lightning-button>
+        
+
+        <div class="input-container">
+            <lightning-input type="text" placeholder="First Name" value={firstname} onchange={handleFirstNameChange} data-id="firstname"></lightning-input>
+
+            <lightning-input type="text" placeholder="Last Name" value={lastname} onchange={handleLastNameChange} data-id="lastname"></lightning-input>
+
+            <lightning-input type="email" placeholder="Email" value={email} onchange={handleEmailChange} data-id="email"></lightning-input>
+
+            <lightning-input type="number" placeholder="Phone" value={phone} onchange={handlePhoneChange} data-id="phone" pattern="[0-9]{10}"></lightning-input>
+
+            <lightning-input type="text" placeholder="Zip Code" value={zip} onchange={handleZipCodeChange} data-id="zip"></lightning-input>
+
+            <lightning-button label="Apply" variant="brand" disabled={isDisabled} onclick={filterContacts}></lightning-button> 
+        </div>
+
+        <ul class="suggestion-list" if:true={showSuggestions}>
+            <template for:each={suggestions} for:item="suggestion">
+                <li key={suggestion.id} class="suggestion" onclick={selectSuggestion}>{suggestion}</li>
+            </template>
+        </ul>
+
+
+        <template lwc:if={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        <template if:true={isShowModal}>
+
+            <c-contact-record-modal
+                contact-details={contactDetails}
+                onclosemodal={handleCloseModal}
+                oncontactsaved={handleContactSaved}
+                ondeletecontact={handleDeleteContact}
+                is-view-mode={isViewMode}
+                is-edit-mode={isEditMode}>
+            </c-contact-record-modal>
+            
+        </template>
+
+
+        <div class="table">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr>
+                    <th>First Name
+                        
+                            <lightning-icon icon-name="utility:arrowup" alternative-text="Sort Asc" class="sort-asc-icon" size="xx-small" onclick={handleSort} data-field="FirstName"></lightning-icon>
+                            <lightning-icon icon-name="utility:arrowdown" alternative-text="Sort Desc" class="sort-desc-icon" size="xx-small" onclick={handleSort} data-field="FirstName"></lightning-icon>
+                    </th>
+                    <th>Last Name
+
+                        <lightning-icon icon-name="utility:arrowup"             alternative-text="Sort Asc" class="sort-asc-icon" size="xx-small" onclick={handleSort} data-field="LastName"></lightning-icon>
+                        <lightning-icon icon-name="utility:arrowdown" alternative-text="Sort Desc" class="sort-desc-icon" size="xx-small" onclick={handleSort} data-field="LastName"></lightning-icon>
+                    </th>
+                    <th>Email
+
+                        <lightning-icon icon-name="utility:arrowup" alternative-text="Sort Asc" class="sort-asc-icon" size="xx-small" onclick={handleSort} data-field="Email"></lightning-icon>
+                        <lightning-icon icon-name="utility:arrowdown" alternative-text="Sort Desc" class="sort-desc-icon" size="xx-small" onclick={handleSort} data-field="Email"></lightning-icon>
+                    </th>
+                    <th>Phone
+
+                        <lightning-icon icon-name="utility:arrowup" alternative-text="Sort Asc" class="sort-asc-icon" size="xx-small" onclick={handleSort} data-field="Phone"></lightning-icon>
+                        <lightning-icon icon-name="utility:arrowdown" alternative-text="Sort Desc" class="sort-desc-icon" size="xx-small" onclick={handleSort} data-field="Phone"></lightning-icon>
+                    </th>
+                    <th>Zip Code
+
+                        <lightning-icon icon-name="utility:arrowup" alternative-text="Sort Asc" class="sort-asc-icon" size="xx-small" onclick={handleSort} data-field="MailingPostalCode"></lightning-icon>
+                        <lightning-icon icon-name="utility:arrowdown" alternative-text="Sort Desc" class="sort-desc-icon" size="xx-small" onclick={handleSort} data-field="MailingPostalCode"></lightning-icon>
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <template if:true={visibleContacts}>
+                    <template for:each={visibleContacts} for:item="contact">
+                        <tr key={contact.contactId}>
+                            <td><button class="slds-button slds-button-brand" onclick={showContactData} data-id={contact.contactId}>{contact.contactFirstName}</button></td>
+                            <td>{contact.contactLastName}</td>
+                            <td>{contact.contactEmail}</td>
+                            <td>{contact.contactPhone}</td>
+                            <td>{contact.contactZipCode}</td>
+                            <td>
+                                <button class="slds-button slds-button-brand"   onclick={editContact} data-id={contact.contactId}>Edit</button>
+                                <button class="slds-button slds-button-brand" onclick={deleteContact} data-id={contact.contactId}>Delete</button>
+                            </td>
+                        </tr>
+                    </template>
+                </template>
+
+            </tbody>
+            
+        </table>
+        </div>
+
+        <!-- <div class="pagination">
+            {currentPage} - {recordsPerPage} of {allRecordsCount}
+            <lightning-button label="Previous" onclick={previousPage} disabled={isFirstPage}></lightning-button>
+            <lightning-button label="Next" onclick={nextPage} disabled={isLastPage}></lightning-button>
+        </div> -->
+        
+        <!-- Previous and Next buttons -->
+        <!-- <ul class="pagination">
+            <template for:each={pageNumbers} for:item="pageNumber">
+                <li key={pageNumber} class="pagination-item">
+                    <a href="#" data-page={pageNumber} onclick={handlePageClick}>
+                        {pageNumber}
+                    </a>
+                </li>
+            </template>
+        </ul> -->
+
+        <div slot="footer" class="slds-var-m-horizontal_medium">
+            <c-pagination records={contacts} onupdate={updateContactHandler}></c-pagination>
+        </div>
+
+       
+</lightning-card>
+
+</template>

@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Button Card">
+        <lightning-button class="slds-button" variant="brand" label={showHideLabel} onclick={handleShowBtn}></lightning-button>
+    </lightning-card>
+    <template if:true={showCard}>
+        <lightning-card title="Show/Hide Demo">
+            {myTitle}
+        </lightning-card>
+    </template>
+</template>

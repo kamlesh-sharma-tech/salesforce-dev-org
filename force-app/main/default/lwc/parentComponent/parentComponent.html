@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Parent Component">
+        <lightning-input label="First Name" value={firstName} onchange={handleFirstNameChange}></lightning-input>
+        <lightning-input label="Last Name" value={lastName} onchange={handleLastNameChange}></lightning-input>
+        <lightning-button label="Send Name to Child" onclick={passValuesToChild} variant="brand"></lightning-button>
+        <c-child-component first-name={firstName} last-name={lastName} full-name={fullName}></c-child-component>
+    </lightning-card>
+</template>

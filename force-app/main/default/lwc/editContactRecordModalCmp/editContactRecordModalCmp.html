@@ -1,0 +1,15 @@
+<template>
+    <div class="modal">
+        <!-- Modal content with input fields for editing -->
+        <div class="modal-content">
+            <lightning-input label="First Name" value={editedFirstName} onchange={handleFirstNameChange}></lightning-input>
+            <lightning-input label="Last Name" value={editedLastName} onchange={handleLastNameChange}></lightning-input>
+            <lightning-input label="Email" value={editedEmail} onchange={handleEmailChange}></lightning-input>
+            <lightning-input label="Phone" value={editedPhone} onchange={handlePhoneChange}></lightning-input>
+            
+            <div class="modal-footer">
+                <lightning-button label="Save" variant="brand" onclick={handleSaveClick}></lightning-button>
+            </div>
+        </div>
+    </div>
+</template>

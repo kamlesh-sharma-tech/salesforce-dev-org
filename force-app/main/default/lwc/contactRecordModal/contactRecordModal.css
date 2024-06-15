@@ -1,0 +1,15 @@
+.cancel-btn{
+    float: right;
+}
+.save-btn{
+    float: left;
+}
+.table{
+    margin-top: 1em;
+}
+.error-message{
+    color: #ef0606;
+}
+.delete-icon{
+    float: right;
+}

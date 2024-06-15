@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="Active and Non-Active Account">
+        <div>
+            <lightning-radio-group name="recordType" label="Select One" options={options} value={selectedValue} onchange={handleRadioChange}></lightning-radio-group>
+        </div>
+    
+        <template lwc:if={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+    
+        <template lwc:else>
+            <div lwc:if={showActiveAccountData}>
+                <h2>Active Account Names:</h2>
+                <ul>
+                    <template for:each={activeAccountList} for:item="account">
+                        <li key={account.accName}>{account.accName}</li>
+                    </template>
+                </ul>
+            </div>
+    
+            <div lwc:elseif={showNonActiveAccountData}>
+                <h2>Non-Active Account Names:</h2>
+                <ul>
+                    <template for:each={nonActiveAccountList} for:item="account">
+                        <li key={account.accName}>{account.accName}</li>
+                    </template>
+                </ul>
+            </div>
+        </template>
+        </lightning-card>
+</template>

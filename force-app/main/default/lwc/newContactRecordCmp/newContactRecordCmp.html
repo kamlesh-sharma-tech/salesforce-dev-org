@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Create new contact">
+
+        <template lwc:if={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        <div class="slds-p-around_medium">
+            
+            <lightning-input label="First Name" value={first_name} onchange={handleFirstNameChange}></lightning-input>
+            <lightning-input label="Last Name" value={last_name} onchange={handleLastNameChange}></lightning-input>
+            <lightning-input label="Email" type="email" value={email} onchange={handleEmailChange}></lightning-input>
+            <lightning-input label="Phone" value={phone} pattern="[0-9]{10}" onchange={handlePhoneChange}></lightning-input>
+            <!-- <lightning-input label="City" value={contactCity} onchange={handleCityChange}></lightning-input>
+            <lightning-input label="Address" value={contactAddress} onchange={handleAddressChange}></lightning-input>
+            <lightning-input label="Zip" value={contactZip} onchange={handleZipChange}></lightning-input> -->
+            <lightning-button label="Create Contact" onclick={createContact} disabled={isDisabled} variant="brand"></lightning-button>
+
+        </div>
+        
+    </lightning-card>
+</template>
