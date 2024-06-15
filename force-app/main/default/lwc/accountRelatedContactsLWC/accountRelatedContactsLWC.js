@@ -2,6 +2,7 @@ import { LightningElement,track,api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { openTab } from 'lightning/platformWorkspaceApi';
 import getRelatedContacts from '@salesforce/apex/AccountRelatedContactsController.getRelatedContacts';
+import noContactFoundMessage from '@salesforce/label/c.No_Contacts_Found';
 
 export default class AccountRelatedContactsLWC extends NavigationMixin(LightningElement) {
     @api title;
@@ -11,6 +12,7 @@ export default class AccountRelatedContactsLWC extends NavigationMixin(Lightning
     @track isloading = false;
     @track isExpanded = false;
     @track contactsFound = false;
+    @track noContactMessage = noContactFoundMessage;
 
     connectedCallback() {
         this.contacts = null;
@@ -69,6 +71,6 @@ export default class AccountRelatedContactsLWC extends NavigationMixin(Lightning
     handleViewMore(){
         this.isExpanded = true;
         this.isLoading = true;
-        this.fetchData(this.viewCount);
+        this.fetchData(100000);
     }
 }

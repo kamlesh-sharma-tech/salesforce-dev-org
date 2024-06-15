@@ -1,10 +1,10 @@
 public with sharing class AccountRelatedContactsController {
     @AuraEnabled
-    public static List<TicketWrapper> getRelatedContacts(String contactId, Integer maxCount){
+    public static List<TicketWrapper> getRelatedContacts(String accountId, Integer maxCount){
 
         String queryString = 'SELECT Id, Name, Title, Department ';
         queryString += 'FROM Contact WHERE ';
-        queryString += 'AccountId = :contactId ';
+        queryString += 'AccountId = :accountId ';
         queryString += 'ORDER BY CreatedDate DESC';
 
         List<Contact> contacts = (List<Contact>) Database.query(queryString);

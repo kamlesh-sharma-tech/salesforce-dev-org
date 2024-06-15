@@ -17,7 +17,7 @@
 
         <template if:false={isLoading}>
             <template if:false={contactsFound}>
-                <div class="slds-card__body slds-hidden"></div>
+                <div class="slds-card__body error">{noContactMessage}</div>
             </template>
             <template if:true={contactsFound}>
                 <div class="slds-card__body slds-card__body_inner slds-scrollable_y" style="max-height:25rem; ">
