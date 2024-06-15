@@ -1,0 +1,24 @@
+<template>
+    <article class="slds-card slds-no-print backgroundStyle">
+        <div class="slds-card__header slds-grid">
+            <template if:true={isLoading}>
+                <div style="min-height: 1rem;">
+                    <lightning-spinner alternative-text="Loading" size="medium" variant="inverse"></lightning-spinner>
+                </div>
+            </template>
+            <template if:false={isLoading}>
+                <header class="slds-media slds-media_center slds-has-flexi-truncate" style="display: flex; justify-content: space-between;">
+                    <!-- GUEST NAME -->
+                    <h1 class="title">{accountName}</h1>
+    
+                    <!-- ACTIONS -->
+                    <lightning-button-group slot="actions">
+                        <template if:true={showRefresh}>
+                            <lightning-button-icon icon-name="utility:refresh"  alternative-text="refresh" title="Refresh" variant="border-filled" onclick={handleRefresh}></lightning-button-icon>
+                        </template>
+                    </lightning-button-group>
+                </header>
+            </template>
+        </div>
+    </article>
+</template>
